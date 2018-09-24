@@ -25,7 +25,7 @@
 
 <html>
 <body onload="window.print()">
-	<h1>Fiche des employée</h1>
+	<h1>Fichea des employée</h1>
 <table>
 		<tr><td>Prénom</td><td>Mail</td><td>Age</td><td>Ville</td><td>Sexe</td><tr>
 			<?php
