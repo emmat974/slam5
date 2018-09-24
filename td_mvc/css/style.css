@@ -1,0 +1,25 @@
+label {
+	display: block;
+	margin: 5px 0;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+td,
+th {
+	padding: 5px;
+	border-bottom: 1px solid #aaa;
+}
+body{
+	background: url('fond.png');
+}
+a{
+	color : green;
+}
+a:hover{
+	border-bottom: orange 1px solid;
+	color : orange;
+}

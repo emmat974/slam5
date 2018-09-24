@@ -1,0 +1,21 @@
+
+body{
+	background: url('fond.png');
+}
+
+
+section{
+	margin-top : 5%;
+	text-align : center;
+}
+
+footer{
+	margin-top : 5%;
+	text-align: center;
+}
+tr{
+	border-bottom: 1px black solid;
+}
+td{
+	border-bottom: 1px black solid;
+}

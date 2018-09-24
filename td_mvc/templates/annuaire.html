@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Annuaire</title>
+    <link rel="stylesheet" href="../css/annuaire.css">
+    <!-- Pour les versions antérieures à Internet Explorer 9-->
+    <!--[if lt IE 9]>
+        <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+    <h3>Annuaire des contacts</h3>
+
+    <div class="container">
+        <form action="/action_page.php">
+
+            <label for="genre">Civilité</label>
+            <select id="genre" name="genre">
+                <option value="monsieur">M</option>
+                <option value="madame">Mme</option>
+                <option value="mademoiselle">Mlle</option>
+            </select>
+
+            <label for="prenom">Prénom</label>
+            <input type="text" id="prenom" name="prenom" placeholder="Votre prénom...">
+
+            <label for="nom">Nom</label>
+            <input type="text" id="nom" name="nom" placeholder="Votre nom...">
+
+            <label for="mail">Email</label>
+            <input type="email" id="mail" name="mail" placeholder="Votre mail... ">
+
+            <label for="datenais">Date de naissance</label>
+            <input type="date" id="datenais" name="datenais">
+
+            <br><br>
+
+            <label for=" infos ">Informations</label>
+            <textarea id="infos " name="infos " placeholder="Écris quelque chose... " style="height:200px "></textarea>
+
+            <input type="submit " value="Validez ">
+        </form>
+    </div>
+</body>
+
+</html>
