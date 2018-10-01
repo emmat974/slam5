@@ -32,6 +32,10 @@
 			<td>Droit d'utilisateur</td>
 			<td><?php echo $employe['droit']; ?></a></td>
 		</tr>
+		<tr>
+			<td>Catégorie</td>
+			<td><strong><?php echo $employe['name']; ?></strong></td>
+		</tr>
 	</tbody>
 </table>
 </center>

@@ -9,7 +9,7 @@ class employe extends ConnexionDB  {
 	}
 
 	public function getEmploye($id) {
-		$sql = $this->cnx->prepare("SELECT * FROM employes WHERE id=?");
+		$sql = $this->cnx->prepare("SELECT * FROM employes e,categories c  WHERE e.idcat = c.id AND e.id=?");
 		$sql->execute( array($id) );
 		return $sql->fetch();
 	}
@@ -17,9 +17,9 @@ class employe extends ConnexionDB  {
 	public function add($empl)
 	{
 		$pwd= password_hash($empl['pwd'], PASSWORD_DEFAULT);
-		$sql = $this->cnx->prepare("INSERT INTO employes (prenom,nom,email,age,ville,motdepasse,sexe,droit) 
-        VALUES (?,?,?,?,?,?,?,?)");
-		$sql->execute( array($empl['prenom'],$empl['nom'],$empl['email'],$empl['age'],$empl['ville'],$pwd,$empl['sexe'],$empl['droit']));
+		$sql = $this->cnx->prepare("INSERT INTO employes (prenom,nom,email,age,ville,motdepasse,sexe,droit,idcat) 
+        VALUES (?,?,?,?,?,?,?,?,?)");
+		$sql->execute( array($empl['prenom'],$empl['nom'],$empl['email'],$empl['age'],$empl['ville'],$pwd,$empl['sexe'],$empl['droit'],$empl['categories']));
 		return $sql->rowCount();
 	}
 
@@ -60,4 +60,36 @@ class employe extends ConnexionDB  {
 		$sql->execute( array($post['city']) );
 		return $sql->fetchAll();
 	}
+
+	public function categories(){
+		return $this->cnx->query("SELECT * FROM categories")->fetchAll();
+	}
+
+	public function getCategorie($id){
+		$sql = $this->cnx->prepare("SELECT * FROM categories WHERE id=?");
+		$sql->execute(array($id));
+
+		return $sql->fetch();
+	}
+
+	public function addcat($post){
+		$sql = $this->cnx->prepare("INSERT INTO categories (name,description) VALUES (?,?)");
+		$sql->execute(array($post['name'],$post['description']));
+
+		return $sql->rowCount();
+	}
+
+	public function updatecat($post,$id){
+		$sql = $this->cnx->prepare("UPDATE categories SET name=?, description=? WHERE id=?");
+		$sql->execute(array($post['name'],$post['description'],$id));
+
+		return $sql->rowCount();
+	}
+
+	public function searchcat($post){
+		$sql = $this->cnx->prepare("SELECT * FROM employes WHERE idcat=?");
+		$sql->execute(array($post['categorie']));
+		return $sql->fetchAll();
+	}
+
 }

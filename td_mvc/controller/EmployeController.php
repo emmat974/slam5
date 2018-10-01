@@ -13,12 +13,14 @@ class EmployeController {
     public function index($notification = '') {
         $data['notification'] = $notification;
     	$data['employes'] = $this->employes->getAllEmploye();
+                $categorie = $this->employes->categories();
     	include 'view/employe/index.php';
         die;
     }
 
     public function show() {
     	$employe = $this->employes->getEmploye($_GET['id']);
+
         if (!$employe) {
             die('Page Not Found 404');    
         }
@@ -27,20 +29,17 @@ class EmployeController {
 
     public function add() {
         $errors = array();
+        $categories = $this->employes->categories();
 
         if (isset($_POST['submit'])) {
             
             if (empty($errors)) {
                 $add = $this->employes->add($_POST);
-                if ($add) {
-                    $msg = "L'employé ".$_POST['prenom']." ".$_POST['nom']." a été ajouté!";
-                } 
-                else {
-                    $msg = "Impossible d'ajouter l'employé!";
-                }
+                $msg = ($add) ? "L'employé ".$_POST['prenom']." ".$_POST['nom']." a été ajouté!" : "Impossible d'ajouter l'employé!";
                 $this->index($msg); // Redirection vers l'index
             }
         }
+    
         include 'view/employe/add.php';
     }
 
@@ -49,11 +48,7 @@ class EmployeController {
         if(@($_POST['submit'])){
 
                 $update = $this->employes->edit($_POST,$_GET['id']);
-                if($update)
-                    $msg = "L'employé ".$_POST['prenom']." ".$_POST['nom']." a été maj !";
-                else
-                    $msg = "Impossible de mettre à jour l'employé";
-
+                $msg = ($update) ? "L'employé ".$_POST['prenom']." ".$_POST['nom']." a été maj !" : "Impossible de mettre à jour l'employé";
                 $this->index($msg);
         }
 
@@ -67,22 +62,14 @@ class EmployeController {
     public function delete()
     {
         $del = $this->employes->delete($_GET['id']);
-        if ($del) {
-            $msg = "L'employé ". $_GET['id']." a été supprimé.";
-        } 
-        else {
-            $msg = "Impossible de supprimer l'employé!";
-        }
+        $msg = ($del) ? "L'employé ". $_GET['id']." a été supprimé." : "Impossible de supprimer l'employé!";
         $this->index($msg); // Redirection vers l'index
     }
 
     #SUPPRESSION DE MASSE
     public function deletemasse(){
         $del = $this->employes->deletemasse($_POST);
-        if($del)
-            $msg = "Les employés ont bien été viré :)";
-        else
-            $msg = "Impossible de les virés";
+        $msg = ($del) ? "Les employés ont bien été viré :)" : "Impossible de les virés";
 
         $this->index($msg);
     }
@@ -112,5 +99,38 @@ class EmployeController {
     public function search(){
         $data['employes'] = $this->employes->search($_POST);
         include 'view/employe/search.php';
+    }
+
+    #Cat
+    public function cat(){
+        $categories = $this->employes->categories();
+        include 'view/employe/cat.php';
+    }
+    public function addcat(){
+        if(@$_POST['submit']){
+            $addcat = $this->employes->addcat($_POST);
+            $msg = ($addcat) ? "L'ajoute de votre catégorie a bien été prise" : "Une erreur s'est produit lors de l'ajout de votre catégorie";
+            $this->index($msg);
+        }
+
+        $categories = $this->employes->categories();
+        include 'view/employe/addcat.php';
+    }
+
+    public function updatecat(){
+        if(@$_POST['submit']){
+            $updatecat = $this->employes->updatecat($_POST,$_GET['id']);
+            $msg = ($updatecat) ? "La modification de votre catégorie a bien été prise en compte" : "Erreur produit lors de la modification de votre catégorie";
+            $this->index($msg);
+        }
+
+        $categorie = $this->employes->getCategorie($_GET['id']);
+        include 'view/employe/updatecat.php';
+    }
+
+    public function searchcat(){
+        $data['employes'] = $this->employes->searchcat($_POST);
+        $categorie = $this->employes->categories();
+        include 'view/employe/searchcat.php';
     }
 }

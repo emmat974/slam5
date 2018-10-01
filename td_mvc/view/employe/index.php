@@ -5,8 +5,15 @@
 			<form method="POST" action="?ctrl=employe&mth=search">
 				<i class="fas fa-map-marker-alt"></i> Ville <input type="text" name="city" id="city" size=50/>
 				<input type="submit" name="submit" value="Rechercher" class="btn btn-primary"> <a target="_blank" href="impression.php" class="btn btn-success"><i class="fas fa-print"></i></a> <a href="#" class="btn btn-warning"> <i class="far fa-file"></i> CSV </a>
-			</form></p>
+			</form><br>
 
+			<form method="POST" action="?ctrl=employe&mth=searchcat">
+				Rechercher par Catégorie : <select name="categorie">
+					<?php foreach($categorie as $key => $value){
+						echo '<option value='.$value['id'].'>'.$value['name'].'</option>';
+					}?></select>
+					<input type="submit" name="submit" value="Search" class="btn btn-dark">
+			</form> 
 <?php
 if (!empty($data['notification'])) {
 	echo '<p>'.$data['notification'].'</p>';
@@ -58,6 +65,7 @@ if (!empty($data['notification'])) {
 				<?php if(@$_SESSION['droit'] == 1 || @$_SESSION['droit'] == 2) { ?>
 
 <p><a href="?ctrl=employe&mth=add" class="btn btn-success"><i class="fas fa-plus"></i> Ajouter un employé</a>
+<a href="?ctrl=employe&mth=cat" class="btn btn-warning">Gérer mes catégories</a>
 <input type="submit" class="btn btn-danger" value="Suppresion de masse"></form></p><?php } ?>
 </center>
 <?php } else { ?>

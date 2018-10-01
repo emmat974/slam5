@@ -3,7 +3,7 @@
 
 			<form method="POST" action="?ctrl=employe&mth=search">
 				<i class="fas fa-map-marker-alt"></i> Ville <input type="text" name="city" id="city" size=50/>
-				<input type="submit" name="submit" value="Rechercher" class="btn btn-primary"> <a href="index.php?ctrl=employe" class="btn btn-dark"><i class="fas fa-sync-alt"></i></a> <a target="_blank" href="impression.php" class="btn btn-success"><i class="fas fa-print"></i></a> <a href="#" class="btn btn-warning"> <i class="far fa-file"></i> CSV </a>
+				<input type="submit" name="submit" value="Rechercher" class="btn btn-primary"> <a href="index.php?ctrl=employe" class="btn btn-dark"><i class="fas fa-sync-alt"></i></a>
 			</form></p>
 
 <?php
@@ -54,10 +54,7 @@ if (!empty($data['notification'])) {
 		?>
 	</tbody>
 </table><br>
-				<?php if(@$_SESSION['droit'] == 1 || @$_SESSION['droit'] == 2) { ?>
-<form method="POST" action="?ctrl=employe&mth=deletemasse">
-<p><a href="?ctrl=employe&mth=add" class="btn btn-success"><i class="fas fa-plus"></i> Ajouter un employé</a>
-<input type="submit" class="btn btn-danger" value="Suppresion de masse"></form></p><?php } ?>
+			
 </center>
 <?php } else { ?>
 	<center><br><br><br>

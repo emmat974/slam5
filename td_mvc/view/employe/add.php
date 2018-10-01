@@ -9,6 +9,12 @@
     <input type="email" name="email" id="email" required/><br>
         <label for="pwd">Mot de passe</label>
     <input type="password" name="pwd" id="pwd" required/><br>
+    <label for="categorie">Catégorie</label>
+    <select name="categories">
+        <?php foreach($categories as $key => $value){
+            echo'<option value='.$value['id'].'>'.$value['name'].'</option>';
+        } ?></select>
+    
     <label for="droit">Droit d'utilisateur</label>
     <select name="droit">
         <option value="0">Utilisateur</option>
