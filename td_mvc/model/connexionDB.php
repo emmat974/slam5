@@ -5,8 +5,8 @@ class ConnexionDB {
 	protected $cnx;
 
 	private $host       = "localhost";
-	private $username   = "root";
-	private $password   = "";
+	private $username   = "ad_annuaire";
+	private $password   = "pwannuaire";
 	private $dbname     = "dbannuaire";
 	private $tbl        = "employes";
 	private $options    = array(

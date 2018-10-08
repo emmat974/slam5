@@ -24,3 +24,7 @@ CREATE TABLE employes(
 INSERT INTO categories(id,name,description) VALUES(
 	1,"Cadre","Un rôle qui paie bien et c'est franchement très sympa"),
 	(2,"Non-Cadre","Un rôle qui paie moins bien mais c'est toujours franchement très sympa");
+
+INSERT INTO `employes` (`id`, `prenom`, `nom`, `email`, `age`, `ville`, `motdepasse`, `sexe`, `droit`, `idcat`) VALUES
+(1, 'Tony', 'EMMA', 'emma.tony.georges@gmail.com', 23, 'Etang-SalÃ©', '$2y$10$dlTjuyDK6M78eRugXaWGEOikKnGGvSyu./Ce7PZdHBfXRyKltxup.', 'Homme', 2, 1),
+(2, 'test', 'test', 'test@test.com', 21, 'test', '$2y$10$5Lnu/2stseUHVNcHd6Fyguopa4SAdLu.g5rpCGbinyPRyWDymwQH2', 'Homme', 0, 2);
